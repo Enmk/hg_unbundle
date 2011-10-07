@@ -27,7 +27,6 @@ def unbundle(basePath, filename: str):
     nameNoExt = os.path.splitext(os.path.split(filename)[1])[0]
     #make a proper path for unbundling and glue that to the base path
     dirname = os.path.join(*extended([basePath], nameNoExt.split('+')))   #1.
-    #fullFilename = os.path.relpath(fullFilename, dirname)
     os.makedirs(dirname, exist_ok=False)                                  #2.
     command = """cmd.exe /c hg init && hg unbundle {} && hg update""".format(fullFilename)
     with subprocess.Popen(command.split(), cwd=dirname, shell=False):     #3 && 4 && 5
